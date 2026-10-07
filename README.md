@@ -161,7 +161,8 @@ O banco de dados possui três tabelas principais:
 
 ```text
 cliente 1 ─────── N compra N ─────── 1 produto
-```
+
+
 
 A tabela `compra` possui as chaves estrangeiras `id_cliente` e `id_produto`, permitindo relacionar cada compra ao cliente e ao produto correspondente.
 
