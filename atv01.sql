@@ -1,0 +1,90 @@
+criacao do banco e tabelas
+
+
+CREATE DATABASE compras;
+
+USE compras;
+
+CREATE TABLE cliente (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE produto (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE compra (
+    id_compra INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    id_produto INT NOT NULL,
+    quantidade INT NOT NULL,
+
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
+    FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
+);
+
+/*CREATE*/ inserir dados
+
+USE compras;
+
+INSERT INTO cliente (nome, email, telefone) 
+VALUES 
+('Katie', 'katie@email.com', '19996583148'), 
+('Theo Silva', 'theosilva@email.com', '19998523476'), 
+('Kimi Antonelli', 'kimiantonelli@email.com', '19996523458');
+
+SELECT * FROM cliente;
+
+
+USE compras;
+
+INSERT INTO produto (nome, preco)
+VALUES
+('livro coracao de cristal partido', 53.00),
+('carrinho de bebe', 1500.00),
+('capacete', 300.00);
+
+SELECT * FROM compra;
+
+
+USE compras;
+
+INSERT INTO compra (id_cliente, id_produto, quantidade)
+VALUES
+(1, 1, 1),
+(1, 2, 2),
+(2, 3, 1);
+
+SELECT * FROM compra;
+
+
+/*READ */ consultar dados
+
+Ver todos os clientes
+
+SELECT * FROM cliente;
+
+Ver todos os produtos
+
+SELECT * FROM produto;
+
+Ver compras
+
+SELECT * FROM compra;
+
+/*UPDATE */ atualizar
+
+UPDATE cliente
+SET telefone = '19996583159'
+WHERE id_cliente = 1;
+
+
+/*DELETE */ excluir
+
+DELETE FROM compra
+WHERE id_compra = 1;
