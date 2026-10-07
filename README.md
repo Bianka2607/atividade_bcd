@@ -159,10 +159,156 @@ O banco de dados possui três tabelas principais:
 
 ### Relacionamentos
 
-```text
+text
 cliente 1 ─────── N compra N ─────── 1 produto
 
+# ATIVIDADE 02 BCD
 
+# Banco de Dados — Biblioteca
 
-A tabela `compra` possui as chaves estrangeiras `id_cliente` e `id_produto`, permitindo relacionar cada compra ao cliente e ao produto correspondente.
+Projeto de banco de dados desenvolvido em **MySQL**, contendo tabelas de alunos, livros e empréstimos, com operações de **CRUD (Create, Read, Update e Delete)**.
+
+---
+
+## 1. Criação do Banco de Dados
+
+Primeiro, foi criado o banco de dados chamado `biblioteca` e selecionado para utilização.
+
+```
+CREATE DATABASE biblioteca;
+
+USE biblioteca;
+```
+
+---
+
+## 2. Criação das Tabelas
+
+### Tabela `aluno`
+
+Armazena as informações dos alunos.
+
+```
+CREATE TABLE aluno (
+    id_aluno INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
+```
+
+### Tabela `livro`
+
+Armazena as informações dos livros.
+
+```
+CREATE TABLE livro (
+    id_livro INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    autor VARCHAR(100) NOT NULL
+);
+```
+
+### Tabela `emprestimo`
+
+Registra os empréstimos realizados, relacionando alunos e livros.
+
+```
+CREATE TABLE emprestimo (
+    id_emprestimo INT AUTO_INCREMENT PRIMARY KEY,
+    id_aluno INT NOT NULL,
+    id_livro INT NOT NULL,
+    data_emprestimo DATE NOT NULL,
+    data_devolucao DATE,
+
+    FOREIGN KEY (id_aluno) REFERENCES aluno(id_aluno),
+    FOREIGN KEY (id_livro) REFERENCES livro(id_livro)
+);
+```
+
+---
+
+# CRUD
+
+## 3. CREATE — Inserir Dados
+
+### Inserindo alunos
+
+```
+INSERT INTO aluno (nome, email)
+VALUES
+('Bianka', 'bianka@email.com'),
+('Kimi', 'kimi@email.com'),
+('Theo', 'theo@email.com');
+
+SELECT * FROM aluno;
+```
+
+### Inserindo livros
+
+```
+INSERT INTO livro (titulo, autor)
+VALUES
+('Princesa das Cinzas', 'Laura Sebastian'),
+('Cutelo e Corvo', 'Brynne Weaver'),
+('Crueldade e Maldição', 'Rebecca Robinson');
+
+SELECT * FROM livro;
+```
+
+### Inserindo empréstimos
+
+```
+INSERT INTO emprestimo (id_aluno, id_livro, data_emprestimo, data_devolucao)
+VALUES
+(1, 1, '2026-10-07', '2026-10-21'),
+(2, 2, '2026-10-07', '2026-10-21'),
+(3, 3, '2026-10-08', '2026-10-22');
+
+SELECT * FROM emprestimo;
+```
+
+---
+
+# 4. READ — Consultar Dados
+
+### Ver todos os alunos
+
+```
+SELECT * FROM aluno;
+```
+
+### Ver todos os livros
+
+```
+SELECT * FROM livro;
+```
+
+### Ver todos os empréstimos
+
+```
+SELECT * FROM emprestimo;
+```
+
+---
+
+# 5. UPDATE — Atualizar Dados
+
+Foi realizada a atualização do título do livro que possui o `id_livro = 2`.
+
+```
+UPDATE livro
+SET titulo = 'Couro e Rouxinol'
+WHERE id_livro = 2;
+```
+
+---
+
+# 6. DELETE — Excluir Dados
+
+Foi excluído o empréstimo que possui o `id_emprestimo = 1`.
+
+```
+DELETE FROM emprestimo
+WHERE id_emprestimo = 1;
+```
 
