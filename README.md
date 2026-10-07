@@ -1,4 +1,4 @@
-# atividade 01 BCD
+# ATIVIDADE 01 BCD
 # Banco de Dados — Compras
 
 Projeto de banco de dados desenvolvido em **MySQL**, contendo tabelas de clientes, produtos e compras, com operações de **CRUD (Create, Read, Update e Delete)**.
